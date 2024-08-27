@@ -38,14 +38,15 @@ async function main() {
     // Select 함수
     async function selectStripeInvoiceMapByExternalId(externalId: string) {
       try {
-        const result = await entityManager.query(`
-          SELECT id, externalId, created_at
+        const result = await entityManager.query(
+          `SELECT id
           FROM stripe_invoice_map
-          WHERE externalId = ?
-        `, [externalId]);
+          WHERE externalId = ?`,
+          [externalId],
+        );
 
         if (result.length > 0) {
-          console.log("조회 결과:", result[0]);
+          console.log("조회 결과:", result[0].id);
           return result[0];
         } else {
           console.log("해당 externalId로 조회된 결과가 없습니다.");
@@ -63,7 +64,7 @@ async function main() {
     // await insertStripeInvoiceMap(insertId, insertExternalId);
 
     // Select 예시
-    const selectExternalId = "ext_456";
+    const selectExternalId = "ext_4563";
     const selectResult = await selectStripeInvoiceMapByExternalId(selectExternalId);
 
     if (selectResult) {

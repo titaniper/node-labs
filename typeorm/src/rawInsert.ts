@@ -7,10 +7,11 @@ async function insertStripeInvoiceMap(
 ) {
   try {
     // Raw insert 쿼리 실행
-    const result = await entityManager.query(`
-      INSERT INTO stripe_invoice_map (id, externalId)
-      VALUES (?, ?)
-    `, [id, externalId]);
+
+    const result = await entityManager.query(`INSERT INTO stripe_invoice_map (id, externalId) VALUES (?, ?)`, [
+        id,
+        externalId,
+    ]);
 
     console.log("Insert 결과:", result);
     return result;
@@ -36,8 +37,8 @@ async function example() {
   const entityManager = dataSource.manager;
   
   try {
-    const id = "invoice_123";
-    const externalId = "ext_456";
+    const id = "invoice_124";
+    const externalId = "ext_454";
     
     await insertStripeInvoiceMap(entityManager, id, externalId);
     console.log("데이터가 성공적으로 삽입되었습니다.");
