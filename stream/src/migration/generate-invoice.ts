@@ -12,7 +12,7 @@ async function generateFakeData() {
         const invoiceItemRepository = AppDataSource.getRepository(InvoiceItem);
 
         const batchSize = 100; // 한 번에 처리할 인보이스 수
-        const totalInvoices = 30000;
+        const totalInvoices = 500;
 
         for (let i = 0; i < totalInvoices; i += batchSize) {
             const invoices: Invoice[] = [];
